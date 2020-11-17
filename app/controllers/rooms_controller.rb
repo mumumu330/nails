@@ -20,6 +20,6 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = current_user.rooms.includes(:messages).order("messages.created_at desc")
+    @rooms = current_user.rooms.includes(:messages).includes(entries: :user).order("messages.created_at desc")
   end
 end
