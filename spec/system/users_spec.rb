@@ -9,10 +9,10 @@ RSpec.describe "Users", type: :system do
       end
 
       it '新規登録に成功する' do
-        fill_in '名前', with: "テスト"
-        fill_in 'メールアドレス', with: "test2@test2"
-        fill_in 'パスワード', with: "tttttt"
-        fill_in '確認用パスワード', with: "tttttt"
+        fill_in 'user[name]', with: "テスト"
+        fill_in 'user[email]', with: "test2@test2"
+        fill_in 'user[password]', with: "tttttt"
+        fill_in 'user[password_confirmation]', with: "tttttt"
         click_button '新規登録'
         expect(page).to have_content 'signed up successfully'
       end
