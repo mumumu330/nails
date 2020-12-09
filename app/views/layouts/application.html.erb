@@ -9,18 +9,28 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     </head>
 
-    <body>
+  <body>
     <div class="wrapper">
       <header class="navbar navbar-fixed-top">
         <div class="col-xs-12">
-          <ul class='nav navbar-nav navbar-left' >
+          
+          <nav class="navbar">
+            <div class="navbar-header">
+                <%# <ul class='nav navbar-nav navbar-left' > %>
+                  <%= image_tag'logo.png', :size => '80x80' %>
+                <%# </ul>  %>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+                <%# <span class="sr-only">メニュー</span> %>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+          
+          <div id="gnavi" class="collapse navbar-collapse">
+          <%# <ul class='nav navbar-nav navbar-left' >
             <%= image_tag'logo.png', :size => '80x80' %>
-          </ul> 
-          
-          
-            <%# <li class="nails" style="font-size: 30px;">Nails</li> %>
-          
-          
+          <%# </ul>  %>
           <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li class="nav-list">
@@ -37,6 +47,14 @@
             </li>
             <li class="nav-list">
               <%= link_to 'DM一覧', rooms_path, class: "glyphicon glyphicon-envelope" %>
+            </li>
+            <li>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+            </li>
+            <li class="nav-list">
+              <%= link_to "通知", notifications_path, class: "glyphicon glyphicon-bell" %>
             </li>
             <li class="nav-list">
               <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
@@ -57,6 +75,8 @@
             <%= render 'layouts/search' %>
           <% end %>
           </ul>
+          </div>
+          </nav>
         </div>
       </header>
 
