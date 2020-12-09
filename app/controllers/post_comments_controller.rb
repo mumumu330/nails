@@ -5,8 +5,10 @@ class PostCommentsController < ApplicationController
     @post_image = PostImage.find(params[:post_image_id])
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_image_id = @post_image.id
+    @comment_post_image = @comment.post_image
     if @comment.save
       @post_comments = PostComment.where(post_image_id: @post_image.id)
+      @comment_post_image.create_notification_comment!(current_user, @comment.id)
     end
     # redirect_to post_image_path(@post_image.id)
   end

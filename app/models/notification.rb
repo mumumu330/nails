@@ -1,0 +1,21 @@
+class Notification < ApplicationRecord
+  default_scope->{order(created_at: :desc)}
+
+    belongs_to :post_image, optional: true
+    belongs_to :post_comment, optional: true
+    belongs_to :visiter, class_name: 'User', foreign_key: 'visiter_id', optional: true
+    belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
+
+  # def visiter_name
+    # User.find(visiter_id).name
+  # end
+  def display_text
+    if action == "favorite"
+      "#{visiter.name}が#{post_image.caption}にいいねしました。"
+    elsif action == "post_comment"
+      "#{visiter.name}が#{post_image.caption}にコメントしました。"
+    elsif action == "follow"
+      "#{visiter.name}があなたをフォローしました。"
+    end
+  end
+end

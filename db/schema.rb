@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_113136) do
+ActiveRecord::Schema.define(version: 2020_12_09_072531) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -47,6 +47,10 @@ ActiveRecord::Schema.define(version: 2020_10_25_113136) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_comment_id"], name: "index_notifications_on_post_comment_id"
+    t.index ["post_image_id"], name: "index_notifications_on_post_image_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
