@@ -9,10 +9,10 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     @post_image.save
-    render :new
-    # else
-      # render :new
-    # end
+    redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def index
